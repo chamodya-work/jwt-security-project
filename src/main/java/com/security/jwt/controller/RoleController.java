@@ -15,8 +15,8 @@ public class RoleController {
     private RoleService roleService;
     @PostMapping("/create-new-role")
     public Role createNewRole(@RequestBody Role role) {
-        role.setRoleName("user");
-        role.setRoleDescription("user for security");
+//        role.setRoleName("user");
+//        role.setRoleDescription("user for security");
         return roleService.createNewRole(role);
     }
 }
