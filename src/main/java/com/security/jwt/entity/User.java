@@ -1,7 +1,7 @@
 package com.security.jwt.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
