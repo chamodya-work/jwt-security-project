@@ -35,7 +35,7 @@ public class UserService {
             userRole.setRoleDescription("User Role");
             roleRepo.save(userRole);
         }
-        if (userRepo.existsById("admin123")) {
+        if (!userRepo.existsById("admin123")) {
             User user = new User();
             user.setUserName("admin123");
             user.setFirstName("Chamodya");
@@ -43,9 +43,10 @@ public class UserService {
             user.setPassword("admin123");
             Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
+            user.setRole(roles);
             userRepo.save(user);
         }
-        if (userRepo.existsById("user123")) {
+        if (!userRepo.existsById("user123")) {
             User user = new User();
             user.setUserName("user123");
             user.setFirstName("Moditha");
@@ -53,6 +54,7 @@ public class UserService {
             user.setPassword("user123");
             Set<Role> roles = new HashSet<>();
             roles.add(userRole);
+            user.setRole(roles);
             userRepo.save(user);
         }
 
