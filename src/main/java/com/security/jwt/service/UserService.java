@@ -5,6 +5,7 @@ import com.security.jwt.entity.User;
 import com.security.jwt.repo.RoleRepo;
 import com.security.jwt.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -17,6 +18,8 @@ public class UserService {
     private UserRepo userRepo;
     @Autowired
     private RoleRepo roleRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user) {
         return userRepo.save(user);
@@ -40,7 +43,7 @@ public class UserService {
             user.setUserName("admin123");
             user.setFirstName("Chamodya");
             user.setLastName("Rajapaksha");
-            user.setPassword("admin123");
+            user.setPassword(encoder("admin123"));
             Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
             user.setRole(roles);
@@ -51,7 +54,7 @@ public class UserService {
             user.setUserName("user123");
             user.setFirstName("Moditha");
             user.setLastName("Rajapaksha");
-            user.setPassword("user123");
+            user.setPassword(encoder("user123"));
             Set<Role> roles = new HashSet<>();
             roles.add(userRole);
             user.setRole(roles);
@@ -59,6 +62,9 @@ public class UserService {
         }
 
 
+    }
+    public String encoder(String password){
+        return passwordEncoder.encode(password);
     }
 
 }
