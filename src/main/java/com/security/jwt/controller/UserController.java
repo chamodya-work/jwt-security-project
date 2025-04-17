@@ -2,9 +2,10 @@ package com.security.jwt.controller;
 
 import com.security.jwt.entity.User;
 import com.security.jwt.service.UserService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/user")
@@ -13,12 +14,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/create-new-user")
+    @PostMapping("/register-new-user")
     public User registerNewUser(@RequestBody User user) {
         return userService.registerNewUser(user);
     }
 
-    @PostConstruct //this method automatically run ,when application start
+    @PostConstruct//this method automatically run ,when application start
     public void initRoleAndUser() {
         userService.initRoleAndUser();
     }
